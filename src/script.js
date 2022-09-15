@@ -44,15 +44,11 @@ function formatTime(time) {
 }
 
 let currently = new Date();
-let currentDate = document.querySelector("#date");
-currentDate.innerHTML = formatDate(currently);
-
-let time = document.querySelector("#time");
-time.innerHTML = formatTime(currently);
+document.querySelector("#date").innerHTML = formatDate(new Date());
+document.querySelector("#time").innerHTML = formatTime(new Date());
 
 function currentTemperature(response) {
   document.querySelector("#city").innerHTML = response.data.name;
-
   document.querySelector("#currentDegrees").innerHTML = Math.round(
     response.data.main.temp
   );
@@ -67,10 +63,8 @@ function currentTemperature(response) {
 function searchCity(city) {
   let apiKey = "9eca7aac0b071aa16e3cb063adba0785";
   let apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
-  let units = "metric";
-
   axios
-    .get(`${apiUrl}${city}&appid=${apiKey}&units=${units}`)
+    .get(`${apiUrl}${city}&appid=${apiKey}&units=metric`)
     .then(currentTemperature);
 }
 
@@ -80,39 +74,18 @@ function changeCity(event) {
   searchCity(city);
 }
 
-let citySearchForm = document.querySelector("#change-city");
-citySearchForm.addEventListener("submit", changeCity);
-
-function toFarenheit() {
-  let degrees = document.querySelector("#degrees");
-  degrees.innerHTML = "66";
-}
-
-let farenheit = document.querySelector("#farenheit");
-farenheit.addEventListener("click", toFarenheit);
-
-function toCelcius() {
-  let degrees = document.querySelector("#degrees");
-  degrees.innerHTML = "13";
-}
-
-let celcius = document.querySelector("#celcius");
-celcius.addEventListener("click", toCelcius);
-
-let myLocation = document.querySelector("#myLocation");
-myLocation.addEventListener("click", geolocate);
+document.querySelector("#change-city").addEventListener("submit", changeCity);
+document.querySelector("#myLocation").addEventListener("click", geolocate);
 
 function geolocate(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(uploadCoordinates);
-
   function uploadCoordinates(response) {
     let apiKey = "9eca7aac0b071aa16e3cb063adba0785";
     let apiUrl = "https://api.openweathermap.org/data/2.5/weather?";
-    let units = "metric";
     axios
       .get(
-        `${apiUrl}lat=${response.coords.latitude}&lon=${response.coords.longitude}&appid=${apiKey}&units=${units}`
+        `${apiUrl}lat=${response.coords.latitude}&lon=${response.coords.longitude}&appid=${apiKey}&units=metric`
       )
       .then(currentTemperature);
   }
