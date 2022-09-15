@@ -78,6 +78,9 @@ hr {
   position: relative;
   right: -10px;
 }
+.source-code {
+  text-align: center;
+}
 .tertiaryButton {
   background-color: transparent;
   border: 1px solid #a7a7a7;
