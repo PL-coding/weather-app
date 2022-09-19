@@ -47,7 +47,6 @@ document.querySelector("#date").innerHTML = formatDate(new Date());
 document.querySelector("#time").innerHTML = formatTime(new Date());
 
 function currentTemperature(response) {
-  console.log(response);
   document.querySelector("#city").innerHTML = response.data.name;
   celciusTemperature = response.data.main.temp;
   document.querySelector("#currentDegrees").innerHTML =
@@ -70,6 +69,35 @@ function currentTemperature(response) {
   document.querySelector(
     "#humidity"
   ).innerHTML = `${response.data.main.humidity}%`;
+}
+
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  let days = ["Tomorrow", "Monday", "Tuesday", "Wednesday", "Thursday"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-4">
+            ${day}<br />
+          </div>
+          <div class="col-2">
+            <img src="media/rain.png" alt="rainy" class="forecast-icon">
+            <br />            
+          </div>
+          <div class="col-2 forecast-minimum">
+            3°<br />           
+          </div>
+          <div class="col-2 bar">
+            <hr />
+            <br />            
+          </div>
+          <div class="col-2 forecast-maximum">
+            17°<br />            
+          </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
 }
 
 function searchCity(city) {
@@ -129,3 +157,4 @@ celciusLink.addEventListener("click", displayCelcius);
 let celciusTemperature = null;
 
 searchCity("Sydney");
+displayForecast();
