@@ -18,6 +18,16 @@ hr {
   text-align: center;
 }
 
+.active {
+  color: #2b4450;
+  cursor: default;
+  text-decoration: none;
+}
+
+.active:hover {
+  color: #2b4450;
+}
+
 .additional-info {
   margin: 30px 0;
 }

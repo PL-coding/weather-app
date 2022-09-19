@@ -43,15 +43,14 @@ function formatTime(time) {
   return `${hour}:${minute}  `;
 }
 
-let currently = new Date();
 document.querySelector("#date").innerHTML = formatDate(new Date());
 document.querySelector("#time").innerHTML = formatTime(new Date());
 
 function currentTemperature(response) {
   document.querySelector("#city").innerHTML = response.data.name;
-  document.querySelector("#currentDegrees").innerHTML = Math.round(
-    response.data.main.temp
-  );
+  celciusTemperature = response.data.main.temp;
+  document.querySelector("#currentDegrees").innerHTML =
+    Math.round(celciusTemperature);
   document.querySelector("#feelsLike").innerHTML = `${Math.round(
     response.data.main.feels_like
   )}°C`;
@@ -90,5 +89,30 @@ function geolocate(event) {
       .then(currentTemperature);
   }
 }
+
+function displayFarenheit(event) {
+  event.preventDefault();
+  let farenheitTemperature = (celciusTemperature * 9) / 5 + 32;
+  document.querySelector("#currentDegrees").innerHTML =
+    Math.round(farenheitTemperature);
+  celciusLink.classList.remove("active");
+  farenheitLink.classList.add("active");
+}
+
+function displayCelcius(event) {
+  event.preventDefault();
+  document.querySelector("#currentDegrees").innerHTML =
+    Math.round(celciusTemperature);
+  farenheitLink.classList.remove("active");
+  celciusLink.classList.add("active");
+}
+
+let farenheitLink = document.querySelector("#farenheit");
+farenheitLink.addEventListener("click", displayFarenheit);
+
+let celciusLink = document.querySelector("#celcius");
+celciusLink.addEventListener("click", displayCelcius);
+
+let celciusTemperature = null;
 
 searchCity("Sydney");
