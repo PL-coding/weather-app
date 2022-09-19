@@ -51,6 +51,11 @@ function currentTemperature(response) {
   celciusTemperature = response.data.main.temp;
   document.querySelector("#currentDegrees").innerHTML =
     Math.round(celciusTemperature);
+  let iconCode = response.data.weather[0].icon;
+  document
+    .querySelector("#currentIcon")
+    .setAttribute("src", `http://openweathermap.org/img/wn/${iconCode}@2x.png`);
+
   document.querySelector("#feelsLike").innerHTML = `${Math.round(
     response.data.main.feels_like
   )}°C`;

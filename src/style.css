@@ -114,6 +114,13 @@ hr {
   margin: 0 auto;
   max-width: 265px;
 }
+#currentIcon {
+  max-width: 55px;
+  max-height: 55px;
+  position: relative;
+  top: -3px;
+}
+
 #date {
   font-size: 18px;
 }
