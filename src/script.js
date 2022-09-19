@@ -47,6 +47,7 @@ document.querySelector("#date").innerHTML = formatDate(new Date());
 document.querySelector("#time").innerHTML = formatTime(new Date());
 
 function currentTemperature(response) {
+  console.log(response);
   document.querySelector("#city").innerHTML = response.data.name;
   celciusTemperature = response.data.main.temp;
   document.querySelector("#currentDegrees").innerHTML =
@@ -54,8 +55,15 @@ function currentTemperature(response) {
   let iconCode = response.data.weather[0].icon;
   document
     .querySelector("#currentIcon")
-    .setAttribute("src", `http://openweathermap.org/img/wn/${iconCode}@2x.png`);
-
+    .setAttribute(
+      "src",
+      `https://openweathermap.org/img/wn/${iconCode}@2x.png`
+    );
+  document.querySelector("#windSpeed").innerHTML = `${Math.round(
+    response.data.wind.speed
+  )} km/h`;
+  document.querySelector("#tempDescription").innerHTML =
+    response.data.weather[0].description;
   document.querySelector("#feelsLike").innerHTML = `${Math.round(
     response.data.main.feels_like
   )}°C`;

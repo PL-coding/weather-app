@@ -54,7 +54,7 @@ hr {
 
 .current-conditions {
   border: none;
-  padding: 18px 0 0;
+  padding: 18px 0 0 0;
 }
 
 .forecast {
@@ -88,6 +88,9 @@ hr {
   position: relative;
   right: -10px;
 }
+.updateLocation {
+  padding: 25px 0 0 0;
+}
 .source-code {
   text-align: center;
 }
@@ -101,7 +104,7 @@ hr {
   margin: 0;
 }
 .today {
-  font-size: 23px;
+  font-size: 18px;
 }
 #city {
   margin: 0 auto;
@@ -132,6 +135,9 @@ hr {
 }
 #time {
   font-size: 18px;
+}
+#tempDescription {
+  text-transform: capitalize;
 }
 #unit {
   font-size: 15px;
