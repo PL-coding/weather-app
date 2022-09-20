@@ -43,6 +43,21 @@ function formatTime(time) {
   return `${hour}:${minute}  `;
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  return days[day];
+}
+
 document.querySelector("#date").innerHTML = formatDate(new Date());
 document.querySelector("#time").innerHTML = formatTime(new Date());
 
@@ -69,35 +84,50 @@ function currentTemperature(response) {
   document.querySelector(
     "#humidity"
   ).innerHTML = `${response.data.main.humidity}%`;
+  getForecast(response.data.coord);
 }
 
-function displayForecast() {
+function getForecast(coordinates) {
+  let apiKey = "9eca7aac0b071aa16e3cb063adba0785";
+  axios
+    .get(
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`
+    )
+    .then(displayForecast);
+}
+
+function displayForecast(response) {
+  console.log(response);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
-  let days = ["Tomorrow", "Monday", "Tuesday", "Wednesday", "Thursday"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col-4">
-            ${day}<br />
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-4">
+            ${formatDay(forecastDay.dt)}<br />
           </div>
           <div class="col-2">
-            <img src="media/rain.png" alt="rainy" class="forecast-icon">
+            <img src="https://openweathermap.org/img/wn/${
+              forecastDay.weather[0].icon
+            }@2x.png" class="forecast-icon">
             <br />            
           </div>
           <div class="col-2 forecast-minimum">
-            3°<br />           
+            ${Math.round(forecastDay.temp.min)}<br />           
           </div>
           <div class="col-2 bar">
             <hr />
             <br />            
           </div>
           <div class="col-2 forecast-maximum">
-            17°<br />            
+            ${Math.round(forecastDay.temp.max)}<br />            
           </div>`;
+    }
+    forecastHTML = forecastHTML + `</div>`;
+    forecastElement.innerHTML = forecastHTML;
   });
-  forecastHTML = forecastHTML + `</div>`;
-  forecastElement.innerHTML = forecastHTML;
 }
 
 function searchCity(city) {
@@ -157,4 +187,3 @@ celciusLink.addEventListener("click", displayCelcius);
 let celciusTemperature = null;
 
 searchCity("Sydney");
-displayForecast();
