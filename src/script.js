@@ -97,7 +97,24 @@ function getForecast(coordinates) {
 }
 
 function displayForecast(response) {
-  console.log(response);
+  let uv = Math.round(response.data.current.uvi);
+  document.querySelector("#uv").innerHTML = uv;
+  if (uv <= 2) {
+    document.querySelector("#uvscale").innerHTML = `Low`;
+    document.getElementById("uvscale").style.color = "#2ab231";
+  } else if (uv < 5.1) {
+    document.querySelector("#uvscale").innerHTML = `Moderate`;
+    document.getElementById("uvscale").style.color = "#efe940";
+  } else if (uv < 7.1) {
+    document.querySelector("#uvscale").innerHTML = `High`;
+    document.getElementById("uvscale").style.color = "#f49e1d";
+  } else if (uv < 10.1) {
+    document.querySelector("#uvscale").innerHTML = `Very High`;
+    document.getElementById("uvscale").style.color = "#f22c0e";
+  } else {
+    document.querySelector("#uvscale").innerHTML = `Extreme`;
+    document.getElementById("uvscale").style.color = "#ea0e0e";
+  }
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
@@ -115,15 +132,14 @@ function displayForecast(response) {
             <br />            
           </div>
           <div class="col-2 forecast-minimum">
-            ${Math.round(forecastDay.temp.min)}<br />           
+            ${Math.round(forecastDay.temp.min)}°C<br />           
           </div>
           <div class="col-2 bar">
             <hr />
             <br />            
           </div>
           <div class="col-2 forecast-maximum">
-            ${Math.round(forecastDay.temp.max)}<br />            
-          </div>`;
+            ${Math.round(forecastDay.temp.max)}°C`;
     }
     forecastHTML = forecastHTML + `</div>`;
     forecastElement.innerHTML = forecastHTML;

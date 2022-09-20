@@ -27,6 +27,7 @@
           <div class="col-sm-6">
             <div class="card current-conditions">
               <div class="card-body">
+                <h2 id="city"></h2>
                 <h1 class="currently">
                   <img src="" id="currentIcon" />
                   <span id="currentDegrees"></span> <span id="unit">°C</span>
@@ -42,7 +43,7 @@
           <div class="col-sm-6">
             <div class="card localinfo">
               <div class="card-body updateLocation">
-                <h2 id="city"></h2>
+                <h4><span id="time"></span><span id="date"></span></h4>
                 <form id="change-city">
                   <input
                     type="text"
@@ -58,7 +59,6 @@
                     My Location
                   </button>
                 </form>
-                <h4><span id="time"></span><span id="date"></span></h4>
               </div>
             </div>
           </div>
@@ -88,17 +88,15 @@
               <div class="card-body">
                 <p class="card-text">Wind Speed</p>
                 <h5 class="card-title" id="windSpeed"></h5>
-                <p class="card-text"></p>
               </div>
             </div>
           </div>
           <div class="col-sm-3">
             <div class="card">
               <div class="card-body">
-                <p class="card-text">Sunrise</p>
-                <h5 class="card-title">6:19 am</h5>
-                <p class="card-text">Sunset</p>
-                <p class="card-text">5:37 pm</p>
+                <p class="card-text">UV Index</p>
+                <h5 class="card-title" id="uv"></h5>
+                <p class="card-text" id="uvscale"></p>
               </div>
             </div>
           </div>

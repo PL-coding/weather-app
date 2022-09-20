@@ -4,6 +4,9 @@ body {
 h2 {
   padding: 5px 0;
 }
+h4 {
+  padding: 0 0 15px;
+}
 h5 {
   font-size: 25px;
   padding: 10px 0 2px;
@@ -44,7 +47,6 @@ hr {
 
 .current-conditions {
   border: none;
-  padding: 18px 0 0 0;
 }
 
 .forecast {
@@ -58,12 +60,17 @@ hr {
 }
 
 .forecast-icon {
-  height: 23px;
+  height: 50px;
+  position: relative;
+  top: -10px;
 }
+
 .forecast-maximum {
+  color: #844444;
   text-align: left;
 }
 .forecast-minimum {
+  color: #55859b;
   text-align: right;
 }
 .localinfo {
@@ -132,4 +139,7 @@ hr {
 #unit {
   font-size: 15px;
   vertical-align: super;
+}
+#uvscale {
+  font-weight: bolder;
 }
