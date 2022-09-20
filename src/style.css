@@ -37,6 +37,7 @@ hr {
 }
 
 .container {
+  background-image: url("C:\Users\Ngocv Diep Huynh\Documents\SheCodes Challenges and Assignments\weather-app\media\weather.jpg");
   border: solid rgba(128 128 128 / 0.5);
   border-radius: 5px;
   display: block;
