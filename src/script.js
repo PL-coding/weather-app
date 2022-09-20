@@ -161,29 +161,4 @@ function geolocate(event) {
   }
 }
 
-function displayFarenheit(event) {
-  event.preventDefault();
-  let farenheitTemperature = (celciusTemperature * 9) / 5 + 32;
-  document.querySelector("#currentDegrees").innerHTML =
-    Math.round(farenheitTemperature);
-  celciusLink.classList.remove("active");
-  farenheitLink.classList.add("active");
-}
-
-function displayCelcius(event) {
-  event.preventDefault();
-  document.querySelector("#currentDegrees").innerHTML =
-    Math.round(celciusTemperature);
-  farenheitLink.classList.remove("active");
-  celciusLink.classList.add("active");
-}
-
-let farenheitLink = document.querySelector("#farenheit");
-farenheitLink.addEventListener("click", displayFarenheit);
-
-let celciusLink = document.querySelector("#celcius");
-celciusLink.addEventListener("click", displayCelcius);
-
-let celciusTemperature = null;
-
 searchCity("Sydney");
