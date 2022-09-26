@@ -147,7 +147,12 @@ hr {
 #time {
   font-size: 18px;
 }
+
 #tempDescription {
+  display: inline-block;
+}
+
+#tempDescription::first-letter {
   text-transform: capitalize;
 }
 #unit {
