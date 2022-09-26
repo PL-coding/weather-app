@@ -29,7 +29,7 @@ hr {
   margin: 13px 0;
 }
 .card {
-  background-color: #36454f;
+  background-color: #708090;
   border-radius: 10px;
   height: 150px;
   text-align: center;
@@ -39,7 +39,7 @@ hr {
 }
 
 .container {
-  background-color: #b0b3b8;
+  background-color: #e4e6eb;
   border: solid rgba(128 128 128 / 0.5);
   border-radius: 5px;
   display: block;
