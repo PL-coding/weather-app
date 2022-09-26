@@ -142,8 +142,9 @@ hr {
   border: 1px solid #a7a7a7;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  color: #e5ab0d;
+  color: #a7a7a7;
 }
+
 #time {
   font-size: 18px;
 }
